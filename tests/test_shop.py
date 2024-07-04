@@ -44,10 +44,7 @@ class TestProducts:
         # TODO напишите проверки на метод buy,
         #  которые ожидают ошибку ValueError при попытке купить больше, чем есть в наличии
         for product in products:
-            try:
-                product.buy(product.quantity + 1)
-            except ValueError:
-                pass
+            pytest.raises(ValueError, product.buy, product.quantity + 1)
 
 
 
