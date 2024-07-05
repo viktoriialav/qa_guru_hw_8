@@ -53,7 +53,7 @@ class Cart:
         Метод добавления продукта в корзину.
         Если продукт уже есть в корзине, то увеличиваем количество
         """
-        self.products[product] = self.products.get(product, default=0) + buy_count
+        self.products[product] = self.products.setdefault(product, 0) + buy_count
 
     def remove_product(self, product: Product, remove_count=None):
         """
@@ -65,13 +65,13 @@ class Cart:
             if remove_count is None or remove_count >= self.products[product]:
                 del self.products[product]
             else:
-                self.products[product] += remove_count
+                self.products[product] -= remove_count
 
-    def clear(self):
+    def clear_cart(self):
         self.products.clear()
 
     def get_total_price(self) -> float:
-        return sum(self.products.values())
+        return sum(key.price * val for key, val in self.products.items())
 
     def buy(self):
         """
@@ -81,4 +81,4 @@ class Cart:
         """
         for key, val in self.products.items():
             key.buy(val)
-        self.clear()
+        self.clear_cart()
