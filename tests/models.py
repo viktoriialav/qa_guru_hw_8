@@ -81,4 +81,4 @@ class Cart:
         """
         for key, val in self.products.items():
             key.buy(val)
-        self.products.clear()
+        self.clear()
