@@ -31,8 +31,8 @@ class Product:
         else:
             raise ValueError("There aren't enough products in the warehouse.")
 
-    def __hash__(self):
-        return hash(self.name + self.description)
+    # def __hash__(self):
+    #     return hash(self.name + self.description)
 
 
 class Cart:
